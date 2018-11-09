@@ -39,23 +39,22 @@ fi
 
 if [ -z "$MASTERNODE_GEN_KEY" ] 
 	then
-	    echo "|||!!!!!!!!!!!!!!!!!!!!!!!                                                       !!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
-	    echo "|||!!!!!!!!!!!!!!!!!!!!!!!       STOP on INCORRECT or MISSING INFORMATION        !!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
-	    echo "|||                                                                                                         |||"
-	    echo "                                    ---------------------------------                                          "
-	    echo "|||                                                                                                         |||" 
-	    echo "|||                               Masternode private key is missing.                                        |||"
-	    echo "|||                                                                                                         |||"   
-	    echo "               Open debug console on your desktop wallet and type: masternode genkey.                          "   
-	    echo "|||                                                                                                         |||" 
-	    echo "|||                            Then use that to start the script as below:                                  |||"    
-	    echo "|||                                                                                                         |||"
-	    echo "                                    $0 <mn_name> <masternod_gen_key>                                           "    
-	    echo "|||                                                                                                         |||"
-	    echo "|||=====================     ----------------------------------------------      ===========================|||"   
-	    echo "==============================================================================================================="
-	    echo "==============================================================================================================="
-	  	exit 1
+		echo "|||!!!!!!!!!!!!!!!!!!!!!!!                                                       !!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
+		echo "|||!!!!!!!!!!!!!!!!!!!!!!!       STOP on INCORRECT or MISSING INFORMATION        !!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
+		echo "|||                                                                                                         |||"
+		echo "                                    ---------------------------------                                          "
+		echo "|||                                                                                                         |||" 
+		echo "|||                               Masternode private key is missing.                                        |||"
+		echo "|||                                                                                                         |||"   
+		echo "               Open debug console on your desktop wallet and type: masternode genkey.                          "   
+		echo "|||                                                                                                         |||" 
+		echo "|||                            Then use that to start the script as below:                                  |||"    
+		echo "|||                                                                                                         |||"
+		echo "                                    $0 <mn_name> <masternod_gen_key>                                           "    
+		echo "|||                                                                                                         |||"
+		echo "|||=====================     ----------------------------------------------      ===========================|||"   
+		echo "==============================================================================================================="
+		echo "==============================================================================================================="		exit 1
 fi
 
 #sudo apt-get update
