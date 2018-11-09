@@ -16,7 +16,47 @@ DKR=docker-ce
 PTNR=portainer
 TEMP=$HOST_COIN_HOME/.rootconf
 
-sudo apt-get update
+
+
+if [ -z "$MN_NAME" ] 
+	then
+		echo "|||!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
+		echo "|||!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!     STOP ON ERROR          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
+		echo "|||                                                                                                         |||"
+		echo "|||                                            -------------                                                |||"
+		echo "|||                                                                                                         |||" 
+		echo "|||                     Masternode name missing. Please start the script correctly                          |||"   
+		echo "|||                                                                                                         |||"   
+		echo "|||                                                                                                         |||" 
+		echo "|||                            Usage is: $0 <mn_name> <masternod_gen_key>                                   |||"    
+		echo "|||                                                                                                         |||"
+		echo "|||==========================   ----------------------------------------   =================================|||"   
+		echo "==============================================================================================================="
+		echo "==============================================================================================================="
+		exit 1
+fi
+
+if [ -z "$MASTERNODE_GEN_KEY" ] 
+	then
+	    echo "|||!!!!!!!!!!!!!!!!!!!!!!!                                                       !!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
+	    echo "|||!!!!!!!!!!!!!!!!!!!!!!!       STOP on INCORRECT or MISSING INFORMATION        !!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
+	    echo "|||                                                                                                         |||"
+	    echo "|||                                    ---------------------------------                                    |||"
+	    echo "|||                                                                                                         |||" 
+	    echo "|||                               Masternode private key is missing.                                        |||"   
+	    echo "|||               Open debug console on your desktop wallet and type: masternode genkey.                    |||"   
+	    echo "|||                                                                                                         |||" 
+	    echo "|||                            Then use that to start the script as below:                                  |||"    
+	    echo "|||                                                                                                         |||"
+	    echo "|||                                $0 <mn_name> <masternod_gen_key>                                         |||"    
+	    echo "|||                                                                                                         |||"
+	    echo "|||=====================     ---------------------------------------------------     =======================|||"   
+	    echo "==============================================================================================================="
+	    echo "==============================================================================================================="
+	  exit 1
+fi
+
+#sudo apt-get update
 
 WANIP=$(wget -qO- ipinfo.io/ip)
 
@@ -24,7 +64,7 @@ WANIP=$(wget -qO- ipinfo.io/ip)
 if ! apt-get -qq install $DKR; 
 	then
 	#install docker
-	sudo apt-get remove docker docker-engine docker.io
+	#sudo apt-get remove docker docker-engine docker.io
 
 	sudo apt-get update
 
@@ -38,26 +78,13 @@ if ! apt-get -qq install $DKR;
 	sudo apt-get update
 
 	sudo apt-get -y install docker-ce
+fi
 
+if ! apt-get -qq install $PTNR;
+	then
 	#install portainer
 	sudo docker volume create portainer_data
 	sudo docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer
-fi
-
-
-if [ -z "$MN_NAME" ] 
-	then
-	  echo "Masternode name missing. Please start the script correctly"
-	  echo "Usage is: $0 <mn_name> <masternod_gen_key>"
-	  exit 1
-fi
-
-if [ -z "$MASTERNODE_GEN_KEY" ] 
-	then
-	  echo "!!!!! <<<<< STOP on INCORRECT or MISSING INFORMATION >>>>> !!!!!!"
-	  echo "Masternode private key missing. Please start script correctly"
-	  echo "Usage is: $0 <mn_name> <masternod_gen_key>"
-	  exit 1
 fi
 
 
@@ -166,19 +193,40 @@ function restart_container {
 
 function display_result {
 	#WANIP=$(dig +short myip.opendns.com @resolver1.opendns.com)
-	myipaddresses=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+	#myipaddresses=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 	result=$(docker ps -q -f name="$MN_NAME")
 	echo "result is $result"
 	if [ -z "$result" ];then
-		echo "Your $COIN Masternode installation for $MN_NAME was NOT successful due to errors"
-		echo "Please try again after correcting errors."
-
-    else
-		echo "!!!!!! <<<<< CONGRATULATIONS >>>>> !!!!!!"
-		echo "Your $COIN Masternode $MN_NAME is now running"
-		echo "Now, point your browser to $WANIP:9000 to manage your masternode."
-		echo "Below are the ip addresses detected on your vps:"
-		echo "$myipaddresses"
+        echo "|||!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
+		echo "|||!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!     STOP ON ERROR          !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
+		echo "|||                                                                                                      |||"
+		echo "|||                                    ---------------------------------                                 |||"
+		echo "|||                                                                                                      |||" 
+		echo "|||           Your $COIN Masternode installation for $MN_NAME was NOT successful due to errors.          |||"   
+		echo "|||                                                                                                      |||"   
+		echo "|||                              Please try again after correcting errors.                               |||"    
+		echo "|||                                                                                                      |||"
+		echo "|||========================   ------------------------------------------------   ========================|||"   
+		echo "============================================================================================================"
+		echo "============================================================================================================"
+    else		
+		echo "|||!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!                            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
+		echo "|||!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   !!!CONGRATULATIONS!!!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!|||"
+		echo "|||                                                                                                           |||"
+		echo "|||                                    --------------------------------                                       |||"
+		echo "|||                                                                                                           |||" 
+		echo "|||                             Your $COIN Masternode $MN_NAME is deployed and running.                       |||"
+		echo "|||                                                                                                           |||" 
+		echo "|||        The public ip address of your Masternode is $WANIP. Use this ip to setup your desktop wallet.      |||"   
+		echo "|||                                                                                                           |||"   
+		echo "|||                                                                                                           |||" 
+		echo "|||                    You may now point your browser to $WANIP:9000 to manage your masternode.               |||"    
+		echo "|||                                                                                                           |||"
+		echo "|||                                                                                                           |||" 
+		echo "|||==========================   --------------------------------------------   ===============================|||"   
+		echo "================================================================================================================="
+		echo "================================================================================================================="
+		
 	fi
 
 }
