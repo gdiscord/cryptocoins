@@ -16,7 +16,7 @@ DKR=docker-ce
 PTNR=portainer
 TEMP=$HOST_COIN_HOME/.rootconf
 
-
+sudo chmod +x $0
 
 if [ -z "$MN_NAME" ] 
 	then
