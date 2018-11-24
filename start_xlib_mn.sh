@@ -29,7 +29,7 @@ if [ -z "$MN_NAME" ]
 		echo "                                              "      
 		echo "   Please start the script correctly          "   
 		echo "                                              " 
-		echo " Usage is: $0 <mn_name> <masternod_gen_key>   "    
+		echo " Usage is: $0 <mn_name> <masternode_gen_key>   "    
 		echo "                                              "
 		echo "========   -----------------------   =========="   
 		echo "==============================================="
