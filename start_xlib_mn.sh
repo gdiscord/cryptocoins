@@ -52,7 +52,7 @@ if [ -z "$MASTERNODE_GEN_KEY" ]
 	    echo "                                                    " 
 	    echo "   Then use that to start the script as below:      "    
 	    echo "                                                    "
-	    echo "      $0 <mn_name> <masternod_gen_key>              "    
+	    echo "      $0 <mn_name> <masternode_gen_key>              "    
 	    echo "                                                    "
 	    echo "======  ------------------------------------- ======"   
 	    echo "===================================================="
