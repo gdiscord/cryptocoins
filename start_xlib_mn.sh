@@ -217,7 +217,7 @@ function display_result {
 		echo "|||!!!!!!!!!!!!!!!!!!                           !!!!!!!!!!!!!!!!!!!!|||"
 		echo "|||!!!!!!!!!!!!!!!!!!   !!!CONGRATULATIONS!!!   !!!!!!!!!!!!!!!!!!!!|||"
 		echo "                                                                       "
-		echo "              -------------------------------------------              "
+		echo "              -----------------------------------------                "
 		echo "                                                                       " 
 		echo "       Your $COIN Masternode $MN_NAME is deployed and running.         "
 		echo "                                                                       " 
