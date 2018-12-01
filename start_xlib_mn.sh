@@ -122,7 +122,7 @@ server=1
 daemon=0
 maxconnections=64
 masternode=1
-externalip=$WANIP
+masternodeaddr=$WANIP
 masternodeprivkey=$MASTERNODE_GEN_KEY
 EOF
 cat "$CONF_FILE"
