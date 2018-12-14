@@ -54,7 +54,6 @@ wget https://s3.amazonaws.com/liberty-builds/5.0.58.0/linux-x64.tar.gz
 sudo tar xvzf linux-x64.tar.gz -C /usr/local/bin/
 su xlibmn -c "libertyd -daemon"
 
-#function create_conf {
 if ! apt-get -qq install pwgen; 
     then
 		sudo apt-get install pwgen
@@ -85,7 +84,7 @@ masternodeprivkey=$MASTERNODE_GEN_KEY
 EOF
 cat "$CONF_FILE"
 
-#}
+
 
 su xlibmn -c libertyd
 echo "please wait... just seconds to go!"
