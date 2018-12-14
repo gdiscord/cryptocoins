@@ -1,8 +1,5 @@
 #!/bin/sh
 
-wget https://raw.githubusercontent.com/gdiscord/cryptocoins/master/xlib_fresh_vps_install_only.sh && chmod +x ./xlib_fresh_vps_install_only.sh
-
-
 CONF_FILE="/home/xlibmn/.liberty/liberty.conf"
 DEFAULT_RPC_PORT=10416
 PORT=10417
