@@ -4,6 +4,7 @@ CONF_FILE="/home/xlibmn/.liberty/liberty.conf"
 DEFAULT_RPC_PORT=10416
 PORT=10417
 MASTERNODE_GEN_KEY=$1
+WANIP=$(wget -qO- ipinfo.io/ip)
 
 if [ -z "$MASTERNODE_GEN_KEY" ] 
 then
