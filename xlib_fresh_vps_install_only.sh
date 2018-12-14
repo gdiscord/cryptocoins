@@ -1,5 +1,8 @@
 #!/bin/sh
 
+wget https://raw.githubusercontent.com/gdiscord/cryptocoins/master/xlib_fresh_vps_install_only.sh && chmod +x ./xlib_fresh_vps_install_only.sh
+
+
 CONF_FILE="/home/xlibmn/.liberty/liberty.conf"
 DEFAULT_RPC_PORT=10416
 PORT=10417
@@ -52,21 +55,19 @@ useradd -m -s /bin/bash xlibmn
 
 wget https://s3.amazonaws.com/liberty-builds/5.0.58.0/linux-x64.tar.gz
 sudo tar xvzf linux-x64.tar.gz -C /usr/local/bin/
-rm linux-x64.tar.gz
-
 su xlibmn -c "libertyd -daemon"
 
-function create_conf {
-	if ! apt-get -qq install pwgen; 
-	    then
-			sudo apt-get install pwgen
-	fi
-	if ! apt-get -qq install dnsutils; 
-		then 
-			sudo apt-get install dnsutils
-	fi
-	RPC_USER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
-	PASSWORD=$(pwgen -s 64 1)
+#function create_conf {
+if ! apt-get -qq install pwgen; 
+    then
+		sudo apt-get install pwgen
+fi
+if ! apt-get -qq install dnsutils; 
+	then 
+		sudo apt-get install dnsutils
+fi
+RPC_USER=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+PASSWORD=$(pwgen -s 64 1)
 
 echo "creating conf file"
 su xlibmn -c "liberty-cli stop" && sleep 5
@@ -87,8 +88,8 @@ masternodeprivkey=$MASTERNODE_GEN_KEY
 EOF
 cat "$CONF_FILE"
 
-}
-create_conf
+#}
+
 su xlibmn -c libertyd
 echo "please wait... just seconds to go!"
 sleep 15
