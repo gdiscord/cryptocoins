@@ -6,7 +6,7 @@ su xlibmn -c "liberty-cli stop"
 wget https://s3.amazonaws.com/liberty-builds/5.0.72.0/linux-x64.tar.gz
 tar xvzf linux-x64.tar.gz
 rm linux-x64.tar.gz
-mv linux* /usr/local/bin
+mv liberty* /usr/local/bin
 sleep 10
 echo "few seconds remaining. please wait ..."
 su xlibmn -c "libertyd -deamon"
