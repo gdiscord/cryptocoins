@@ -1,5 +1,20 @@
 #!/bin/sh
 
+if $1="update"; then
+cd
+su xlibmn -c "liberty-cli stop"
+wget https://s3.amazonaws.com/liberty-builds/5.0.72.0/linux-x64.tar.gz
+tar xvzf linux-x64.tar.gz
+rm linux-x64.tar.gz
+mv linux* /usr/local/bin
+sleep 10
+echo "few seconds remaining. please wait ..."
+su xlibmn -c "libertyd -deamon"
+su xlibmn -c "liberty-cli "
+echo "masternode is successfully updated and running the newest wallet release version"
+echo "you must re-activate the node from your desktop wallet now."
+
+else
 CONF_FILE="/home/xlibmn/.liberty/liberty.conf"
 DEFAULT_RPC_PORT=10416
 PORT=10417
@@ -110,3 +125,4 @@ echo "                                                                       "
 echo "=========   --------------------------------------------   ============"   
 echo "======================================================================="
 echo "======================================================================="
+fi
