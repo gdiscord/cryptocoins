@@ -2,6 +2,7 @@
 
 if $1="update"; then
 cd
+rm linux-x64.tar.gz
 su xlibmn -c "liberty-cli stop"
 wget https://s3.amazonaws.com/liberty-builds/5.0.72.0/linux-x64.tar.gz
 tar xvzf linux-x64.tar.gz
