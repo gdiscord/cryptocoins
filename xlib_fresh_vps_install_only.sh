@@ -65,7 +65,7 @@ echo '/mnt/3000MB.swap  none  swap  sw 0  0' >> /etc/fstab
 
 useradd -m -s /bin/bash xlibmn
 
-wget https://s3.amazonaws.com/liberty-builds/5.0.58.0/linux-x64.tar.gz
+wget https://s3.amazonaws.com/liberty-builds/5.0.72.0/linux-x64.tar.gz
 sudo tar xvzf linux-x64.tar.gz -C /usr/local/bin/
 su xlibmn -c "libertyd -daemon"
 
