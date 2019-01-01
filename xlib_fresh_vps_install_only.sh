@@ -10,7 +10,7 @@ rm linux-x64.tar.gz
 mv liberty* /usr/local/bin
 sleep 10
 echo "few seconds remaining. please wait ..."
-su xlibmn -c "libertyd -deamon"
+su xlibmn -c "libertyd -daemon"
 su xlibmn -c "liberty-cli getblockcount"
 echo "masternode is successfully updated and running the newest wallet release version"
 echo "you must re-activate the node from your desktop wallet now."
