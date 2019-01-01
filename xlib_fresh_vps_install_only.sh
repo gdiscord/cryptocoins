@@ -14,8 +14,11 @@ su xlibmn -c "libertyd -deamon"
 su xlibmn -c "liberty-cli getblockcount"
 echo "masternode is successfully updated and running the newest wallet release version"
 echo "you must re-activate the node from your desktop wallet now."
+#clean up
+rm $0
+exit 0
+fi
 
-else
 CONF_FILE="/home/xlibmn/.liberty/liberty.conf"
 DEFAULT_RPC_PORT=10416
 PORT=10417
@@ -126,7 +129,6 @@ echo "                                                                       "
 echo "=========   --------------------------------------------   ============"   
 echo "======================================================================="
 echo "======================================================================="
-fi
 
 #clean up
 rm $0
