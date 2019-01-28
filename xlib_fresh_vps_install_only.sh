@@ -70,7 +70,7 @@ echo '/mnt/3000MB.swap  none  swap  sw 0  0' >> /etc/fstab
 
 useradd -m -s /bin/bash xlibmn
 
-wget wallet_url
+wget $wallet_url
 sudo tar xvzf linux-x64.tar.gz -C /usr/local/bin/
 su xlibmn -c "libertyd -daemon"
 
