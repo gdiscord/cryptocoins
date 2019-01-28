@@ -1,10 +1,11 @@
 #!/bin/sh
 
+wallet_url=https://s3.amazonaws.com/liberty-builds/5.2.1.0/linux-x64.tar.gz
 if $1="update"; then
 cd
 rm linux-x64.tar.gz
 su xlibmn -c "liberty-cli stop"
-wget https://s3.amazonaws.com/liberty-builds/5.1.1.0/linux-x64.tar.gz
+wget $wallet_url
 tar xvzf linux-x64.tar.gz
 rm linux-x64.tar.gz
 mv liberty* /usr/local/bin
@@ -69,7 +70,7 @@ echo '/mnt/3000MB.swap  none  swap  sw 0  0' >> /etc/fstab
 
 useradd -m -s /bin/bash xlibmn
 
-wget https://s3.amazonaws.com/liberty-builds/5.0.72.0/linux-x64.tar.gz
+wget wallet_url
 sudo tar xvzf linux-x64.tar.gz -C /usr/local/bin/
 su xlibmn -c "libertyd -daemon"
 
