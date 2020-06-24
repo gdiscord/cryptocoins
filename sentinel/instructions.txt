@@ -1,0 +1,88 @@
+Sentinel for Arion Masternodes
+===============================
+
+=== Installation ===
+----------------
+
+Ubuntu 16.04 / 18.04 assumed.
+
+All commands are to be executed as root user.
+The '#' character preceeding the shell commands is not part of the command.
+It is simply a symbol to show that you are at the command shell of root user.
+Do not type that in!
+
+Step 1. Prepare vps for Sentinel
+a. logon to your vps as root
+
+b. Make sure Python version 2.7.x or above is installed:
+
+    # python --version
+
+c. Update system packages and ensure virtualenv is installed:
+
+    # apt-get update
+    # apt-get -y install python-virtualenv
+
+d. Download and extract sentinel to /root
+# wget https://github.com/gdiscord/cryptocoins/blob/master/arion_sentinel.zip
+
+unzip arion_sentinel.zip
+
+(You should now have /root/sentinel)
+
+e. Install Sentinel
+
+    # cd /root/sentinel
+    # virtualenv ./venv
+    # ./venv/bin/pip install -r requirements.txt
+
+
+Step 2. Configure your sentinel installation.
+a. Copy /root/sentinel folder to your MN user home directory
+
+(E.g if you run your MN under a user called arion_mn1, you need to execute the command as follows):
+
+# cp -R /root/sentinel /home/arion_mn1
+
+
+b. Next, edit /home/arion_mn1/sentinel/sentinel.conf file
+
+# nano /home/arion_mn1/sentinel/sentinel.conf 
+
+Now, put the path to your arion.conf file
+ arion_conf=/home/arion_mn1/.arioncore/arion.conf
+
+Exit by nano editor by pressing ctrl + x keys, then type y and press return key (Enter).
+
+c. change file permissions 
+
+# chown -R arion_mn1:arion_mn1 /home/arion_mn1
+
+6. Make an entry in crontab to start sentinel
+
+# crontab -e
+Scroll all the way to the bottom of the editor and add the entry on one line as:
+
+* * * * * cd /home/arion_mn1/sentinel && su arion_mn1 -c "./venv/bin/python bin/sentinel.py >/dev/null 2>&1 >> arion_mn1_sentinel.log"
+
+
+Repeat all of Step 2 for each MNs on this vps (You must have an entry for each MN in crontab).
+
+
+Enjoy!
+
+
+============================================================================================
+**Note**
+===============
+Errors from the sentinel are logged into the file appended at the end of the line in crontab. The file can grow over time if there are errors from sentinel. You may remove this from the crontab once your sentinel is working fine and not outputting errors. The crontab entry then becomes:
+
+* * * * * cd /home/m1/sentinel && su m1 -c "./venv/bin/python bin/sentinel.py >/dev/null 2>&1
+
+Or, from time to time you could manually delete the file from /home/arion_mn1/sentinel folder as follows:
+
+# rm /home/arion_mn1/sentinel/m1_sentinel.log
+==============================================================================================
+
+
+
